@@ -1,166 +1,165 @@
 # IDS Application Service / Сервис ИНД заявок
 
-This project provides a web‑based service for managing IDS applications. It allows users to create, submit, and track applications with flexible forms, attach files, and receive status updates. Administrators can review applications, change statuses, and leave comments. The application is built to be easily deployable on‑premises using Docker.
+Данный проект представляет собой веб‑сервис для управления заявками ИНД. Он позволяет пользователям создавать, отправлять и отслеживать заявки с гибкими формами, прикреплять файлы и получать обновления статуса. Администраторы могут просматривать заявки, изменять их статусы и оставлять комментарии. Приложение построено с возможностью простого развёртывания в собственной инфраструктуре с использованием Docker.
 
-## User Workflow
+## Пользовательский сценарий
 
-This section describes the typical steps a user follows to register, fill out an application, and track its status.
+В этом разделе описаны типичные шаги, которые выполняет пользователь для регистрации, заполнения заявки и отслеживания её статуса.
 
-### 1. Registration
+### 1. Регистрация
 
-- Open the application in your browser (`http://localhost`).
-- Click **Регистрация** (Register) in the navigation bar.
-- Fill in the registration form:
-  - **Email** – a valid email address.
-  - **Пароль** (Password) – at least 6 characters.
-  - **Имя** (First name)
-  - **Фамилия** (Last name)
-- Click **Зарегистрироваться** (Register).  
-  If successful, you will be redirected to the login page.
+- Откройте приложение в браузере (`http://localhost`).
+- Нажмите **Регистрация** в панели навигации.
+- Заполните регистрационную форму:
+  - **Email** – действующий адрес электронной почты.
+  - **Пароль** – не менее 6 символов.
+  - **Имя**
+  - **Фамилия**
+- Нажмите **Зарегистрироваться**.  
+  В случае успеха вы будете перенаправлены на страницу входа.
 
 ![Registration](data/Regis.png)
 
-### 2. Login
+### 2. Вход в систему
 
-- On the login page, enter your **Email** and **Пароль**.
-- Click **Войти** (Login).  
-  After successful authentication, you are redirected to your personal dashboard – **Мои заявки** (My Applications).
+- На странице входа введите ваш **Email** и **Пароль**.
+- Нажмите **Войти**.  
+  После успешной аутентификации вы попадёте в личный кабинет – **Мои заявки**.
 
  ![Login](data/SignUp.png) 
 
-### 3. Dashboard – My Applications
+### 3. Личный кабинет – Мои заявки
 
-- The dashboard lists all applications you have created, showing:
-  - **ID** – unique identifier.
-  - **Статус** (Status) – e.g., draft, submitted, under review, accepted, rejected.
-  - **Дата подачи** (Submission date) – filled only after submission.
-  - **Дата создания** (Creation date).
-  - **Действия** (Actions) – a link to view the application details.
-- To start a new application, click the **Создать новую заявку** (Create New Application) button.
+- На панели отображается список всех созданных вами заявок с указанием:
+  - **ID** – уникальный идентификатор.
+  - **Статус** – например, черновик, отправлена, на рассмотрении, принята, отклонена.
+  - **Дата подачи** – заполняется только после отправки.
+  - **Дата создания**.
+  - **Действия** – ссылка для просмотра деталей заявки.
+- Чтобы создать новую заявку, нажмите кнопку **Создать новую заявку**.
 
 ![Dashboard](data/MyApps.png) 
 
-### 4. Create a New Application
+### 4. Создание новой заявки
 
-- You are presented with a form whose fields are defined by the system administrator (based on the template's "Интегрированный набор данных" sheet).  
-  Typical fields may include:
-  - Описание сценария (text area)
-  - Маппинг на имеющийся набор данных (text area)
-  - Набор мастер-источников (text)
-  - Глубина бизнес-истории (text)
-  - Актуальность (dropdown with predefined values)
-  - Желаемый срок реализации и обоснование (date picker)
-  - and others, depending on configuration.
-- Fill in all required fields (marked with `*`).
-- Click **Создать черновик** (Create Draft).  
-  The application is saved with status **draft**, and you are redirected to its detail page.
+- Перед вами форма, поля которой определяются администратором системы (на основе листа "Интегрированный набор данных" шаблона).  
+  Обычно поля могут включать:
+  - Описание сценария (текстовое поле)
+  - Маппинг на имеющийся набор данных (текстовое поле)
+  - Набор мастер-источников (текст)
+  - Глубина бизнес-истории (текст)
+  - Актуальность (выпадающий список с предопределёнными значениями)
+  - Желаемый срок реализации и обоснование (выбор даты)
+  - и другие, в зависимости от конфигурации.
+- Заполните все обязательные поля (помечены `*`).
+- Нажмите **Создать черновик**.  
+  Заявка сохраняется со статусом **черновик**, и вы перенаправляетесь на страницу её деталей.
 
 ![New](data/NewApp.png) 
 
-### 5. Add Attachments (Optional)
+### 5. Добавление вложений (необязательно)
 
-- On the application detail page, scroll to the **Вложения** (Attachments) section.
-- Click **Выберите файл** (Choose file), select a document (PDF, image, Word, etc.), then click **Загрузить** (Upload).  
-  The file is stored on‑premises, and its name appears in the attachment list.
-- You can upload multiple files while the application is still in draft status.
+- На странице деталей заявки прокрутите до раздела **Вложения**.
+- Нажмите **Выберите файл**, выберите документ (PDF, изображение, Word и т.п.), затем нажмите **Загрузить**.  
+  Файл сохраняется в локальном хранилище, и его имя появляется в списке вложений.
+- Вы можете загрузить несколько файлов, пока заявка находится в статусе черновика.
 
-### 6. Submit the Application
+### 6. Отправка заявки
 
-- When you have finished filling out the form and uploading all necessary files, click the **Отправить заявку** (Submit Application) button.
-- The status changes to **submitted**.  
-  If email notifications are configured, you will receive a confirmation email.
-- Once submitted, you can no longer edit the form or upload new files (unless the admin changes it back to draft).
+- Когда вы закончили заполнение формы и загрузку всех необходимых файлов, нажмите кнопку **Отправить заявку**.
+- Статус изменяется на **отправлена**.  
+  Если настроены email‑уведомления, вы получите подтверждающее письмо.
+- После отправки вы больше не можете редактировать форму или загружать новые файлы (если только администратор не вернёт заявку в черновик).
 
 ![Sub](data/AppDetails.png) 
 
-### 7. Track Application Status
+### 7. Отслеживание статуса заявки
 
-- Return to the dashboard (**Мои заявки**) to see the updated status.
-- Statuses can be:
-  - **draft** – not yet submitted.
-  - **submitted** – awaiting review.
-  - **under_review** – being examined by an administrator.
-  - **accepted** – approved.
-  - **rejected** – declined (with possible comment).
-- Click on any application to view its details, including the data you entered and any comments left by the administrator.
+- Вернитесь в личный кабинет (**Мои заявки**), чтобы увидеть обновлённый статус.
+- Возможные статусы:
+  - **draft** – ещё не отправлена.
+  - **submitted** – ожидает рассмотрения.
+  - **under_review** – рассматривается администратором.
+  - **accepted** – одобрена.
+  - **rejected** – отклонена (с возможным комментарием).
+- Нажмите на любую заявку, чтобы просмотреть её детали, включая введённые вами данные и комментарии администратора.
 
-### 8. Administrator Actions (for reference)
+### 8. Действия администратора (для справки)
 
-Administrators have additional capabilities:
-- View all applications (from all users) via the **Админ панель** (Admin Dashboard).
-- Change the status of any application and leave a comment.
-- Manage the metadata configuration of the integrated dataset via the **Настройка набора данных** (Dataset Config) page.
+Администраторы обладают дополнительными возможностями:
+- Просмотр всех заявок (всех пользователей) через **Админ панель**.
+- Изменение статуса любой заявки и оставление комментария.
+- Управление конфигурацией метаданных интегрированного набора данных через страницу **Настройка набора данных**.
 
-This workflow covers the complete user journey from registration to final decision.
+Данный сценарий охватывает полный путь пользователя от регистрации до получения решения по заявке.
 
+## Возможности
 
-## Features
+- Регистрация и аутентификация пользователей (JWT).
+- Динамические формы заявок, настраиваемые через простой JavaScript‑файл (поля основаны на шаблоне "Интегрированный набор данных").
+- Загрузка файлов (резюме, документы) с хранением в локальной инфраструктуре.
+- Личный кабинет для просмотра, создания и отправки заявок.
+- Панель администратора для просмотра всех заявок и изменения их статусов.
+- Интерфейс администратора для управления метаданными набора данных (согласно предоставленному шаблону Excel).
+- Интерфейс на русском языке (можно переключить на английский, изменив код).
+- Полная контейнеризация с помощью Docker и Docker Compose.
 
-- User registration and authentication (JWT).
-- Dynamic application forms configured via a simple JavaScript file (fields based on the "Интегрированный набор данных" template).
-- File uploads (resumes, documents) stored on‑premises.
-- User dashboard to list, view, and submit applications.
-- Admin dashboard to view all applications and update their status.
-- Admin interface to manage dataset metadata (according to the provided Excel template).
-- Russian language interface (can be switched to English by modifying the code).
-- Fully containerised with Docker and Docker Compose.
+## Технологический стек
 
-## Technology Stack
+- **Бэкенд:** Node.js + Express (TypeScript)
+- **База данных:** PostgreSQL (с JSONB для гибкого хранения данных заявок)
+- **Фронтенд:** React (создан с помощью Create React App)
+- **Обратный прокси:** Nginx (отдаёт фронтенд и проксирует API-запросы)
+- **Хранилище файлов:** локальная директория (монтируется в контейнеры)
+- **Контейнеризация:** Docker, Docker Compose
 
-- **Backend:** Node.js + Express (TypeScript)
-- **Database:** PostgreSQL (with JSONB for flexible application data)
-- **Frontend:** React (bootstrapped with Create React App)
-- **Reverse Proxy:** Nginx (serves frontend and proxies API requests)
-- **File Storage:** Local on‑premises directory (mounted into containers)
-- **Containerisation:** Docker, Docker Compose
+## Предварительные требования
 
-## Prerequisites
+- [Docker](https://www.docker.com/products/docker-desktop) (версия 20.10+)
+- [Docker Compose](https://docs.docker.com/compose/) (обычно входит в состав Docker Desktop)
+- [Git](https://git-scm.com/) (необязательно, для клонирования)
 
-- [Docker](https://www.docker.com/products/docker-desktop) (version 20.10+)
-- [Docker Compose](https://docs.docker.com/compose/) (usually included with Docker Desktop)
-- [Git](https://git-scm.com/) (optional, for cloning)
+## Начало работы
 
-## Getting Started
-
-### 1. Clone the repository
+### 1. Клонирование репозитория
 
 ```bash
 git clone https://github.com/your-username/user-app-service.git
 cd user-app-service
 ```
 
-### 2. Create environment configuration
+### 2. Создание файла конфигурации окружения
 
-Copy the example environment file and adjust values as needed:
+Скопируйте пример файла окружения и при необходимости измените значения:
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` with your preferred database credentials, JWT secret, and SMTP settings (if you want email notifications).  
-**Important:** Keep this file secure and never commit it.
+Отредактируйте `.env`, указав учётные данные базы данных, секретный ключ JWT и настройки SMTP (если нужны email‑уведомления).  
+**Важно:** храните этот файл в безопасности и никогда не добавляйте его в систему контроля версий.
 
-### 3. Build and start the containers
+### 3. Сборка и запуск контейнеров
 
 ```bash
 docker-compose build
 docker-compose up -d
 ```
 
-This will build the Node.js backend image and start three containers:
-- `app-db` – PostgreSQL database
-- `app-node` – Node.js backend
-- `app-nginx` – Nginx web server
+Будут созданы и запущены три контейнера:
+- `app-db` – PostgreSQL
+- `app-node` – бэкенд на Node.js
+- `app-nginx` – веб‑сервер Nginx
 
-### 4. Initialize the database schema
+### 4. Инициализация схемы базы данных
 
-The database tables need to be created. Run:
+Необходимо создать таблицы. Выполните:
 
 ```bash
 docker exec -it app-db psql -U appuser -d appdb
 ```
 
-Then execute the following SQL (you can also run it from a file):
+Затем выполните следующий SQL (можно также запустить его из файла):
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -207,7 +206,7 @@ CREATE TABLE reviews (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
--- Insert a default admin user (password: "password")
+-- Добавление пользователя-администратора по умолчанию (пароль: "password")
 INSERT INTO users (email, password_hash, role) VALUES (
     'admin@example.com',
     '$2b$10$eL9yI6qX3Fz5sVtZzLZQK.6bJqyX0Fz5sVtZzLZQK.6bJqyX0Fz5s',
@@ -216,11 +215,11 @@ INSERT INTO users (email, password_hash, role) VALUES (
 \q
 ```
 
-> **Note:** The bcrypt hash above corresponds to the string `"password"`. You should change it after first login.
+> **Примечание:** Указанный bcrypt‑хеш соответствует строке `"password"`. После первого входа следует сменить пароль.
 
-### 5. Build the frontend
+### 5. Сборка фронтенда
 
-The frontend source is in the `frontend/` folder. To create the production build, run:
+Исходный код фронтенда находится в папке `frontend/`. Для создания production‑сборки выполните:
 
 ```bash
 cd frontend
@@ -228,106 +227,101 @@ npm install
 npm run build
 ```
 
-If you don’t have Node.js installed locally, you can use Docker:
+Если Node.js не установлен локально, можно использовать Docker:
 
 ```bash
 cd ~/user-app-service
 docker run --rm -v $(pwd)/frontend:/app -w /app node:18-alpine sh -c "npm install && npm run build"
 ```
 
-The built files will be placed in `frontend/build` and served automatically by Nginx.
+Собранные файлы будут помещены в `frontend/build` и автоматически обслуживаться Nginx.
 
-### 6. Access the application
+### 6. Доступ к приложению
 
-Open your browser and go to `http://localhost`. You should see the login page.
+Откройте браузер и перейдите по адресу `http://localhost`. Вы должны увидеть страницу входа.
 
-- Register a new user or log in with `admin@example.com` / `password`.
-- The admin user has access to additional panels: **Админ панель** and **Настройка набора данных**.
+- Зарегистрируйте нового пользователя или войдите как `admin@example.com` / `password`.
+- Администратору доступны дополнительные разделы: **Админ панель** и **Настройка набора данных**.
 
-## Project Structure
+## Структура проекта
 
 ```
 .
-├── backend/                # Node.js backend source
+├── backend/                # Исходный код бэкенда на Node.js
 │   ├── src/
-│   │   ├── config/         # Environment and DB config
-│   │   ├── controllers/    # Route controllers
-│   │   ├── middleware/     # Auth, validation, error handling
-│   │   ├── models/         # Database queries (optional)
-│   │   ├── routes/         # Express routes
-│   │   ├── services/       # Email, file handling
-│   │   ├── utils/          # Logger, validation schemas
-│   │   └── index.ts        # Entry point
+│   │   ├── config/         # Конфигурация окружения и БД
+│   │   ├── controllers/    # Контроллеры маршрутов
+│   │   ├── middleware/     # Аутентификация, валидация, обработка ошибок
+│   │   ├── models/         # Запросы к БД (опционально)
+│   │   ├── routes/         # Маршруты Express
+│   │   ├── services/       # Email, работа с файлами
+│   │   ├── utils/          # Логирование, схемы валидации
+│   │   └── index.ts        # Точка входа
 │   ├── Dockerfile
 │   └── package.json
-├── frontend/               # React frontend
+├── frontend/               # Фронтенд на React
 │   ├── public/
 │   ├── src/
-│   │   ├── components/     # React components
-│   │   ├── api.js          # Axios API client
+│   │   ├── components/     # Компоненты React
+│   │   ├── api.js          # Axios‑клиент для API
 │   │   ├── App.js
-│   │   ├── formConfig.js   # Application form field definitions
+│   │   ├── formConfig.js   # Определения полей формы заявки
 │   │   └── ...
 │   └── package.json
 ├── nginx/
-│   └── default.conf        # Nginx configuration
-├── uploads/                # On‑premises file storage (created at runtime)
+│   └── default.conf        # Конфигурация Nginx
+├── uploads/                # Локальное хранилище файлов (создаётся при работе)
 ├── docker-compose.yml
-├── .env.example            # Example environment variables
+├── .env.example            # Пример файла переменных окружения
 └── README.md
 ```
 
-## Environment Variables
+## Переменные окружения
 
-The following variables are required in `.env`:
+В файле `.env` необходимы следующие переменные:
 
-| Variable          | Description                               | Example                 |
-|-------------------|-------------------------------------------|-------------------------|
-| DB_USER           | PostgreSQL user                           | appuser                 |
-| DB_PASSWORD       | PostgreSQL password                       | strongpassword          |
-| DB_NAME           | Database name                             | appdb                   |
-| JWT_SECRET        | Secret for signing JWT tokens             | your‑secret‑key         |
-| SMTP_HOST         | SMTP server host                          | smtp.example.com        |
-| SMTP_PORT         | SMTP port                                 | 587                     |
-| SMTP_USER         | SMTP username                             | user@example.com        |
-| SMTP_PASS         | SMTP password                             |                         |
+| Переменная       | Описание                                  | Пример                  |
+|------------------|-------------------------------------------|-------------------------|
+| DB_USER          | Пользователь PostgreSQL                   | appuser                 |
+| DB_PASSWORD      | Пароль PostgreSQL                         | strongpassword          |
+| DB_NAME          | Имя базы данных                           | appdb                   |
+| JWT_SECRET       | Секрет для подписи JWT                     | your‑secret‑key         |
+| SMTP_HOST        | SMTP‑сервер                               | smtp.example.com        |
+| SMTP_PORT        | Порт SMTP                                 | 587                     |
+| SMTP_USER        | Имя пользователя SMTP                      | user@example.com        |
+| SMTP_PASS        | Пароль SMTP                               |                         |
 
-SMTP settings are optional; email notifications will be disabled if not provided.
+Настройки SMTP необязательны; при их отсутствии email‑уведомления отключаются.
 
-## Customising the Application Form
+## Настройка формы заявки
 
-The fields shown on the "New Application" page are defined in `frontend/src/formConfig.js`. You can add, remove, or modify fields to match your requirements. Each field object can have:
+Поля, отображаемые на странице «Новая заявка», определяются в файле `frontend/src/formConfig.js`. Вы можете добавлять, удалять или изменять поля в соответствии с требованиями. Каждый объект поля может содержать:
 
-- `name`: JSON key (stored in `application.data`)
-- `label`: displayed label
+- `name`: ключ в JSON (сохраняется в `application.data`)
+- `label`: отображаемая подпись
 - `type`: `text`, `number`, `textarea`, `date`, `select`
-- `required`: boolean
-- `options`: array of strings (for `select` type)
-- `placeholder`: hint text
+- `required`: булево значение (обязательное поле)
+- `options`: массив строк (для типа `select`)
+- `placeholder`: подсказка
 
-Example:
+Пример:
 
 ```javascript
-{ name: 'companyName', label: 'Company Name', type: 'text', required: true }
+{ name: 'companyName', label: 'Название компании', type: 'text', required: true }
 ```
 
-## File Storage
+## Хранение файлов
 
-Uploaded files are stored in the `uploads/` directory on the host, which is mounted into both the Node.js and Nginx containers. This directory is **not** version‑controlled – back it up regularly.
+Загруженные файлы сохраняются в директории `uploads/` на хосте, которая монтируется в контейнеры Node.js и Nginx. Эта директория **не** находится под версионным контролем – регулярно создавайте её резервные копии.
 
-## Backup Recommendations
+## Рекомендации по резервному копированию
 
-- **Database:** Schedule regular `pg_dump` of the PostgreSQL database.
-- **Uploads:** Use `rsync` or a backup tool to copy the `uploads/` folder to another location.
+- **База данных:** регулярно выполняйте `pg_dump`.
+- **Загрузки:** используйте `rsync` или инструменты резервного копирования для копирования папки `uploads/` в другое место.
 
-## Troubleshooting
+## Устранение неполадок
 
-- **Port conflicts:** If port 80 or 5432 is already in use, change the host ports in `docker-compose.yml`.
-- **Frontend not updating:** Rebuild the frontend and restart Nginx: `docker-compose restart nginx`.
-- **Database connection refused:** Ensure the `db` service is running and the port is correctly mapped.
+- **Конфликт портов:** если порт 80 или 5432 уже занят, измените порты хоста в `docker-compose.yml`.
+- **Фронтенд не обновляется:** пересоберите фронтенд и перезапустите Nginx: `docker-compose restart nginx`.
+- **Отказ в подключении к БД:** убедитесь, что сервис `db` запущен и порт правильно проброшен.
 
-
----
-
-For any questions or issues, please open an issue on GitHub.
-```
