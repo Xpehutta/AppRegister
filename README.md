@@ -2,6 +2,88 @@
 
 This project provides a web‑based service for managing IDS applications. It allows users to create, submit, and track applications with flexible forms, attach files, and receive status updates. Administrators can review applications, change statuses, and leave comments. The application is built to be easily deployable on‑premises using Docker.
 
+## User Workflow
+
+This section describes the typical steps a user follows to register, fill out an application, and track its status.
+
+### 1. Registration
+
+- Open the application in your browser (`http://localhost`).
+- Click **Регистрация** (Register) in the navigation bar.
+- Fill in the registration form:
+  - **Email** – a valid email address.
+  - **Пароль** (Password) – at least 6 characters.
+  - **Имя** (First name)
+  - **Фамилия** (Last name)
+- Click **Зарегистрироваться** (Register).  
+  If successful, you will be redirected to the login page.
+
+### 2. Login
+
+- On the login page, enter your **Email** and **Пароль**.
+- Click **Войти** (Login).  
+  After successful authentication, you are redirected to your personal dashboard – **Мои заявки** (My Applications).
+
+### 3. Dashboard – My Applications
+
+- The dashboard lists all applications you have created, showing:
+  - **ID** – unique identifier.
+  - **Статус** (Status) – e.g., draft, submitted, under review, accepted, rejected.
+  - **Дата подачи** (Submission date) – filled only after submission.
+  - **Дата создания** (Creation date).
+  - **Действия** (Actions) – a link to view the application details.
+- To start a new application, click the **Создать новую заявку** (Create New Application) button.
+
+### 4. Create a New Application
+
+- You are presented with a form whose fields are defined by the system administrator (based on the template's "Интегрированный набор данных" sheet).  
+  Typical fields may include:
+  - Описание сценария (text area)
+  - Маппинг на имеющийся набор данных (text area)
+  - Набор мастер-источников (text)
+  - Глубина бизнес-истории (text)
+  - Актуальность (dropdown with predefined values)
+  - Желаемый срок реализации и обоснование (date picker)
+  - and others, depending on configuration.
+- Fill in all required fields (marked with `*`).
+- Click **Создать черновик** (Create Draft).  
+  The application is saved with status **draft**, and you are redirected to its detail page.
+
+### 5. Add Attachments (Optional)
+
+- On the application detail page, scroll to the **Вложения** (Attachments) section.
+- Click **Выберите файл** (Choose file), select a document (PDF, image, Word, etc.), then click **Загрузить** (Upload).  
+  The file is stored on‑premises, and its name appears in the attachment list.
+- You can upload multiple files while the application is still in draft status.
+
+### 6. Submit the Application
+
+- When you have finished filling out the form and uploading all necessary files, click the **Отправить заявку** (Submit Application) button.
+- The status changes to **submitted**.  
+  If email notifications are configured, you will receive a confirmation email.
+- Once submitted, you can no longer edit the form or upload new files (unless the admin changes it back to draft).
+
+### 7. Track Application Status
+
+- Return to the dashboard (**Мои заявки**) to see the updated status.
+- Statuses can be:
+  - **draft** – not yet submitted.
+  - **submitted** – awaiting review.
+  - **under_review** – being examined by an administrator.
+  - **accepted** – approved.
+  - **rejected** – declined (with possible comment).
+- Click on any application to view its details, including the data you entered and any comments left by the administrator.
+
+### 8. Administrator Actions (for reference)
+
+Administrators have additional capabilities:
+- View all applications (from all users) via the **Админ панель** (Admin Dashboard).
+- Change the status of any application and leave a comment.
+- Manage the metadata configuration of the integrated dataset via the **Настройка набора данных** (Dataset Config) page.
+
+This workflow covers the complete user journey from registration to final decision.
+
+
 ## Features
 
 - User registration and authentication (JWT).
