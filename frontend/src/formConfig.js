@@ -12,7 +12,7 @@ export const applicationFields = [
   { 
     name: 'actuality', 
     label: 'Актуальность', 
-    type: 'select',                     // changed to select
+    type: 'select', 
     required: true,
     options: ['T0', 'T-1 22:00', 'T-1 23:59', 'T-2', 'T-3']
   },
@@ -28,4 +28,19 @@ export const applicationFields = [
     type: 'date', 
     required: true 
   },
+  // New fields (swapped roles)
+  {
+    name: 'product',
+    label: 'Желаемый Продукт',
+    type: 'select',
+    required: true,
+    options: ['БВД', 'ЕСС']   // This determines storage technology options
+  },
+  {
+    name: 'storageTechnology',
+    label: 'Технология хранения',
+    type: 'select',
+    required: true
+    // options will be set dynamically based on selected product
+  }
 ];
