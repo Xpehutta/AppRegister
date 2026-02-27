@@ -18,11 +18,15 @@ This section describes the typical steps a user follows to register, fill out an
 - Click **Зарегистрироваться** (Register).  
   If successful, you will be redirected to the login page.
 
+![Registration](data/Regis.png)
+
 ### 2. Login
 
 - On the login page, enter your **Email** and **Пароль**.
 - Click **Войти** (Login).  
   After successful authentication, you are redirected to your personal dashboard – **Мои заявки** (My Applications).
+
+ ![Login](data/SignUp.png) 
 
 ### 3. Dashboard – My Applications
 
@@ -33,6 +37,8 @@ This section describes the typical steps a user follows to register, fill out an
   - **Дата создания** (Creation date).
   - **Действия** (Actions) – a link to view the application details.
 - To start a new application, click the **Создать новую заявку** (Create New Application) button.
+
+![Dashboard](data/MyApps.png) 
 
 ### 4. Create a New Application
 
@@ -48,6 +54,8 @@ This section describes the typical steps a user follows to register, fill out an
 - Fill in all required fields (marked with `*`).
 - Click **Создать черновик** (Create Draft).  
   The application is saved with status **draft**, and you are redirected to its detail page.
+
+![Dashboard](data/New App.png) 
 
 ### 5. Add Attachments (Optional)
 
