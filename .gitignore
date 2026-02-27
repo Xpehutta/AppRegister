@@ -1,0 +1,22 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Node modules
+backend/node_modules
+frontend/node_modules
+
+# Build outputs
+frontend/build
+
+# Docker volumes (not needed)
+uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
