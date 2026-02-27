@@ -71,6 +71,8 @@ This section describes the typical steps a user follows to register, fill out an
   If email notifications are configured, you will receive a confirmation email.
 - Once submitted, you can no longer edit the form or upload new files (unless the admin changes it back to draft).
 
+![Sub](data/AppDetails.png) 
+
 ### 7. Track Application Status
 
 - Return to the dashboard (**Мои заявки**) to see the updated status.
