@@ -55,7 +55,7 @@ This section describes the typical steps a user follows to register, fill out an
 - Click **Создать черновик** (Create Draft).  
   The application is saved with status **draft**, and you are redirected to its detail page.
 
-![Dashboard](data/New App.png) 
+![New](data/NewApp.png) 
 
 ### 5. Add Attachments (Optional)
 
